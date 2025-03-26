@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Earthquake Severity Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: url('/static/earthquake.jpg') no-repeat center center;
+            background-size: cover;
+            height: 250px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header h1 {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 36px;
+        }
+
+        .container {
+            width: 400px;
+            margin: -50px auto 0;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            color: #fff;
+            margin-top: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Earthquake Severity Predictor</h1>
+    </div>
+
+    <div class="container">
+        <h2>Enter Earthquake Details</h2>
+        <form method="post" action="/predict">
+            <input type="text" id="latitude" name="latitude" placeholder="Latitude" required><br>
+            <input type="text" id="longitude" name="longitude" placeholder="Longitude" required><br>
+            <input type="text" id="depth" name="depth" placeholder="Depth" required><br>
+            <input type="text" id="mag" name="mag" placeholder="Magnitude" required><br>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        &copy; 2025 Earthquake Predictor. All rights reserved.
+    </footer>
+
+</body>
+</html>
